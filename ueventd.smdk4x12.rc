@@ -116,15 +116,3 @@
 /sys/devices/virtual/input/input*   poll_delay  0660  root   input
 /sys/devices/virtual/usb_composite/*   enable      0664  root   system
 
-# for felica
-/dev/felica             0666    root    root
-/dev/felica_pon         0666    root    root
-/dev/felica_cen         0666    root    root
-/dev/felica_rfs         0444    root    root
-/dev/felica_rws         0666    root    root
-/dev/felica_ant         0666    root    root
-/dev/felica_int_poll    0400    root    root
-/dev/felica_uid         0222    root    root
-
-# for felica end
-
