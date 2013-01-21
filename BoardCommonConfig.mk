@@ -19,9 +19,15 @@
 
 -include device/samsung/smdk4412-common/BoardCommonConfig.mk
 
+LOCAL_PATH := device/samsung/t0ltecdma
+
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/smdk4412
 TARGET_KERNEL_CONFIG := cyanogenmod_t0ltecdma_defconfig
+
+# Bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := $(LOCAL_PATH)/bluetooth/vnd_t0ltecdma.txt
 
 # Audio
 BOARD_USE_SAMSUNG_SEPARATEDSTREAM := true

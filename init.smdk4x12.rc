@@ -1,10 +1,12 @@
 import init.smdk4x12.usb.rc
 import init.bt.rc
 
-loglevel 3
+loglevel 9
 
 on init
+    mkdir /mnt/shell 0700 shell shell
     mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /mnt/shell/emulated/0 
     mkdir /storage 0550 system sdcard_r
     mkdir /storage/emulated 0555 root root
     mkdir /storage/sdcard1 0775 system system
@@ -16,22 +18,18 @@ on init
     export EMULATED_STORAGE_TARGET /storage/emulated
 
     # for backwards compatibility
+    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
     symlink /storage/emulated/legacy /sdcard
     symlink /storage/emulated/legacy /mnt/sdcard
-    symlink /storage/emulated/legacy /storage/sdcard0
-    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
+    symlink /storage/emulated/legacy /storage/sdcard0    
     symlink /storage/sdcard1 /extSdCard
     symlink /storage/sdcard1 /mnt/extSdCard
     symlink /storage/usbdisk0 /usbdisk0
     symlink /storage/usbdisk0 /mnt/usbdisk0
     
-    symlink /efs /factory
-
-# Camera firmware
-    mkdir /data/cfw 0775 system system
-    
     mkdir /efs 0771 radio system
     mkdir /tombstones
+    symlink /efs /factory
 
     # WFD CES Demo
     chmod 0666 /dev/graphics/fb5
@@ -46,7 +44,10 @@ on fs
     setprop ro.crypto.fuse_sdcard true
     
     mount ext4 /dev/block/mmcblk0p11 /tombstones rw wait noatime nosuid nodev journal_async_commit 
-	
+    
+# Camera firmware
+    mkdir /data/cfw 0775 system system
+    
 #MDM requirement
     mkdir /firmware 0771 system system
     mount vfat /dev/block/mmcblk0p10 /firmware ro shortname=lower fmask=0133,dmask=0022
@@ -69,8 +70,7 @@ on fs
 
 on post-fs-data
      # we will remap this as /mnt/sdcard with the sdcard fuse tool
-     mkdir /data/media 0775 media_rw media_rw
-     chown media_rw media_rw /data/media
+     mkdir /data/media 0770 media_rw media_rw
      
      mkdir /data/misc/radio 0775 radio system
 	 
@@ -143,7 +143,6 @@ on property:sys.boot_completed=1
 
    chown system media /data/cfw/*
    chmod 0775 /data/cfw/*
-
 
 # Camera
     chown system radio /sys/class/camera/rear/rear_camfw
