@@ -50,14 +50,6 @@ PRODUCT_COPY_FILES += \
 # Camera
 COMMON_GLOBAL_CFLAGS += -DCAMERA_WITH_CITYID_PARAM
 
-# Audio
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/configs/tinyucm.conf:system/etc/tinyucm.conf \
-    $(LOCAL_PATH)/configs/default_gain.conf:system/etc/default_gain.conf \
-    $(LOCAL_PATH)/configs/Volume.db:system/etc/Volume.db \
-    $(LOCAL_PATH)/configs/audio_effects.conf:/system/etc/audio_effects.conf
-
 # Product specific Packages
 PRODUCT_PACKAGES += \
     GalaxyNote2Settings \
