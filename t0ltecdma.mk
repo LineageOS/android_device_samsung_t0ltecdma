@@ -39,6 +39,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     tiny_hw
 
+PRODUCT_COPY_FILES += \
+    device/samsung/t0ltecdma/configs/audio_policy.conf:system/etc/audio_policy.conf
+
 # GPS
 PRODUCT_COPY_FILES += \
     device/samsung/t0ltecdma/configs/gps.conf:system/etc/gps.conf
@@ -90,7 +93,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril_class=SamsungCDMAQualcommRIL \
     mobiledata.interfaces=pdp0,wlan0,gprs,ppp0,rmnet_usb0 \
     ro.ril.hsxpa=1 \
-    ro.ril.gprsclass=10
+    ro.ril.gprsclass=10 \
+    ro.config.qc_lte_network_modes=true
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
