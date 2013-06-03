@@ -86,7 +86,7 @@ done
 # Pick up overlay for features that depend on non-open-source files
 DEVICE_PACKAGE_OVERLAYS += vendor/__VENDOR__/__COMMON__/overlay
 
-\$(call inherit-product, vendor/__VENDOR__/__COMMON__/common-vendor-blobs.mk)
+\$(call inherit-product, vendor/__VENDOR__/__COMMON__/__COMMON__-vendor-blobs.mk)
 EOF
 
 (cat << EOF) | sed s/__COMMON__/$COMMON/g | sed s/__VENDOR__/$VENDOR/g > ../../../$COMMONOUTDIR/BoardConfigVendor.mk
